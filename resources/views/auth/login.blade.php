@@ -24,7 +24,7 @@
                     </div>
                 @endif
 
-                <form method="post" action="{{ url('admin/login') }}">
+                <form method="post" action="{{ url('postlogin') }}">
                     @csrf
                     <div class="form-group">
                         <input class="form-control form-control-lg" id="name" type="text" placeholder="Username"
