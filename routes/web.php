@@ -13,12 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/admin');
-});
+Route::get('/', 'App\Http\Controllers\CustomController@index');
+// Route::post('login', 'App\Http\Controllers\CustomController@customLogin');
+// Route::get('/', function () {
+
+// });
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', 'App\Http\Controllers\CustomController@index');
-    Route::post('/custom-login', 'App\Http\Controllers\CustomController@customLogin')->name('login.custom');
+    Route::post('postlogin', 'App\Http\Controllers\CustomController@customLogin')->name('login.custom');
 });
 Auth::routes();
 

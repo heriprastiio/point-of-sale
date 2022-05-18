@@ -12,8 +12,10 @@
                     user information.</span>
             </div>
             <div class="card-body">
-                @if (count($errors) > 0)
+                @if (count($errors))
                     <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.
+                        <br />
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -21,7 +23,8 @@
                         </ul>
                     </div>
                 @endif
-                <form method="post" action="{{ route('login.custom') }}">
+
+                <form method="post" action="{{ url('admin/login') }}">
                     @csrf
                     <div class="form-group">
                         <input class="form-control form-control-lg" id="name" type="text" placeholder="Username"

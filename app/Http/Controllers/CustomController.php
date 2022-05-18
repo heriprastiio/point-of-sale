@@ -22,6 +22,7 @@ class CustomController extends Controller
             'email' => 'required|min:5',
             'password' => 'required',
         ]);
+        // return view('auth.login');
         return view('auth.login');
     }
 
