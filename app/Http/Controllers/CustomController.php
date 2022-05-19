@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CustomController extends Controller
 {
@@ -16,14 +17,25 @@ class CustomController extends Controller
         //
         return view('auth.login');
     }
+
     function customLogin(Request  $request)
     {
-        $request->validate([
-            'email' => 'required|min:5',
-            'password' => 'required',
-        ]);
+        $rules = [
+            'email' => 'required|email|string|nullable'
+        ];
+
+        $customMessages = [
+            'required' => 'Bagian email field is required.',
+            'required' => 'Bagian password field is required.'
+        ];
+
+        $this->validate($request, $rules, $customMessages);
         // return view('auth.login');
-        return view('auth.login');
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('home');
+            dd($credentials);
+        }
     }
 
     /**

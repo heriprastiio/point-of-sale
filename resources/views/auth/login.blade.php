@@ -24,14 +24,13 @@
                     </div>
                 @endif
 
-                <form method="post" action="{{ url('postlogin') }}">
+                <form method="post" action="{{ route('custom.login') }}">
                     @csrf
                     <div class="form-group">
-                        <input class="form-control form-control-lg" id="name" type="text" placeholder="Username"
-                            autocomplete="off">
+                        <input class="form-control form-control-lg" name="email" type="text" placeholder="Username">
                     </div>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" id="password" type="password" placeholder="Password">
+                        <input class="form-control form-control-lg" name="password" type="password" placeholder="Password">
                     </div>
                     <div class="form-group">
                         <label class="custom-control custom-checkbox">

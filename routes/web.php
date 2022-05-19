@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'App\Http\Controllers\CustomController@index');
-Route::post('postlogin', 'App\Http\Controllers\CustomController@customLogin')->name('login.custom');
+Route::post('custom-login', 'App\Http\Controllers\CustomController@customLogin')->name('custom.login');
 // Route::post('login', 'App\Http\Controllers\CustomController@customLogin');
 // Route::get('/', function () {
 
