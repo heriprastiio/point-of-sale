@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Support\Facades\Redirect;
 
 class CustomController extends Controller
 {
@@ -31,11 +33,20 @@ class CustomController extends Controller
 
         $this->validate($request, $rules, $customMessages);
         // return view('auth.login');
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
+        // $credentials = $request->only('email', 'password');
+        // if (Auth::attempt($credentials)) {
+        //     return redirect()->intended('home');
+        //     dd($credentials);
+        // }
+
+        $user = User::where("email", $request->email)->where("password", $request->password)->first();
+        if ($user) {
+            Auth::login($user);
             return redirect()->intended('home');
-            dd($credentials);
+        } else {
+            return Redirect::to('/')->with('errors', collect('Your Account is doesn`t Exist'));
         }
+
     }
 
     /**
